@@ -18,8 +18,10 @@
   ],
   "source-url": "https://github.com/raku-community-modules/Image-PNG-Portable.git",
   "tags": [
+    "IMAGE",
+    "PNG"
   ],
   "test-depends": [
   ],
-  "version": "*"
+  "version": "0.1"
 }
