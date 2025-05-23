@@ -1,13 +1,25 @@
 {
-    "raku" : "6.*",
-    "name" : "Image::PNG::Portable",
-    "license" : "Artistic-2.0",
-    "version" : "*",
-    "description" : "Portable PNG output for Raku",
-    "author" : "raydiak",
-    "depends" : [ "String::CRC32", "Compress::Zlib" ],
-    "provides" : {
-        "Image::PNG::Portable" : "lib/Image/PNG/Portable.rakumod"
-    },
-    "source-url" : "git://github.com/raydiak/Image-PNG-Portable.git"
+  "auth": "zef:raku-community-modules",
+  "author": "raydiak",
+  "build-depends": [
+  ],
+  "depends": [
+    "String::CRC32",
+    "Compress::Zlib"
+  ],
+  "description": "Portable PNG output for Raku",
+  "license": "Artistic-2.0",
+  "name": "Image::PNG::Portable",
+  "provides": {
+    "Image::PNG::Portable": "lib/Image/PNG/Portable.rakumod"
+  },
+  "raku": "6.*",
+  "resources": [
+  ],
+  "source-url": "https://github.com/raku-community-modules/Image-PNG-Portable.git",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "*"
 }

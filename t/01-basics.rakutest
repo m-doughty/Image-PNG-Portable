@@ -5,4 +5,4 @@ use Image::PNG::Portable;
 
 ok 1, 'Module loads successfully';
 
-done-testing;
+# vim: expandtab shiftwidth=4

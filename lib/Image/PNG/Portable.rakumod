@@ -3,16 +3,8 @@ unit class Image::PNG::Portable;
 use String::CRC32;
 use Compress::Zlib;
 
-#`[[[
-https://rt.perl.org/Public/Bug/Display.html?id=123700
-subset UInt of Int where * >= 0;
-subset PInt of Int where * > 0;
-subset UInt8 of Int where 0 <= * <= 255;
-subset NEStr of Str where *.chars;
-]]]
-
-has Int $.width = die 'Width is required';
-has Int $.height = die 'Height is required';
+has Int $.width  is required;
+has Int $.height is required;
 has Bool $.alpha = True;
 
 has $!channels = $!alpha ?? 4 !! 3;
@@ -24,7 +16,7 @@ has $!data = do { my $b = buf8.new; $b[$!data-bytes-1] = 0; $b; };
 # magic string for PNGs
 my $magic = Blob.new: 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A;
 
-method set (
+method set(
     Int $x where * < $!width,
     Int $y where * < $!height,
     Int $r, Int $g, Int $b, Int $a = 255
@@ -35,13 +27,13 @@ method set (
 
     $buffer[$index++] = $r;
     $buffer[$index++] = $g;
-    $buffer[$index] = $b;
+    $buffer[$index  ] = $b;
     $buffer[++$index] = $a if $!alpha;
 
-    True;
+    True
 }
 
-method set-all (Int $r, Int $g, Int $b, Int $a = 255) {
+method set-all(Int:D $r, Int:D $g, Int:D $b, Int:D $a = 255) {
     my $buffer = $!data;
     my $index = 0;
     my $alpha = $!alpha;
@@ -57,12 +49,12 @@ method set-all (Int $r, Int $g, Int $b, Int $a = 255) {
         }
     }
 
-    True;
+    True
 }
 
-method get (
-    Int $x where * < $!width,
-    Int $y where * < $!height
+method get(
+    Int:D $x where * < $!width,
+    Int:D $y where * < $!height
 ) {
     my $buffer = $!data;
     # + 1 skips aforementioned filter byte
@@ -70,10 +62,10 @@ method get (
 
     my @ret = $buffer[$index++], $buffer[$index++], $buffer[$index];
     @ret[3] = $buffer[++$index] if $!alpha;
-    @ret;
+    @ret
 }
 
-method write (Str $file) {
+method write(Str:D $file) {
     my $fh = $file.IO.open(:w, :bin);
 
     $fh.write: $magic;
@@ -83,19 +75,19 @@ method write (Str $file) {
 
     # would love to skip compression for my purposes, but PNG mandates it
     # splitting the data into multiple chunks would be good past a certain size
-        # for now I'd rather expose weak spots in the pipeline wrt large data sets
-        # PNG allows chunks up to (but excluding) 2GB (after compression for IDAT)
+    # for now I'd rather expose weak spots in the pipeline wrt large data sets
+    # PNG allows chunks up to (but excluding) 2GB (after compression for IDAT)
     write-chunk $fh, 'IDAT', compress $!data;
 
     write-chunk $fh, 'IEND';
 
     $fh.close;
 
-    True;
+    True
 }
 
 # writes a chunk
-sub write-chunk (IO::Handle $fh, Str $type, @data = ()) {
+sub write-chunk (IO::Handle:D $fh, Str:D $type, @data = ()) {
     $fh.write: bytes @data.elems, 4;
 
     my @type := $type.encode;
@@ -106,11 +98,11 @@ sub write-chunk (IO::Handle $fh, Str $type, @data = ()) {
 
     $fh.write: bytes String::CRC32::crc32 @td;
 
-    True;
+    True
 }
 
 # converts a number to a Blob of bytes with optional fixed width
-sub bytes (Int $n is copy, Int $count = 0) {
+sub bytes (Int:D $n is copy, Int:D $count = 0) {
     my @return;
 
     my $exp = 1;
@@ -132,3 +124,4 @@ sub bytes (Int $n is copy, Int $count = 0) {
     Blob[uint8].new: @return;
 }
 
+# vim: expandtab shiftwidth=4

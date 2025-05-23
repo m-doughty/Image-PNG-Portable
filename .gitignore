@@ -1,2 +1,3 @@
-*~
 .precomp/
+/Image-PNG-Portable-*
+*.rakucov
