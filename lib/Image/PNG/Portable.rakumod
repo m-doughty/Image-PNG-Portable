@@ -74,7 +74,7 @@ method write(Str:D $file) {
     $fh.write: $magic;
 
     write-chunk $fh, 'IHDR', @(bytes($!width, 4).Slip, bytes($!height, 4).Slip,
-        8, ($!alpha ?? 6 !! 2), 0, 0, 0);
+        8, ($!alpha ?? 6 !! 2), 0, 0, 0); # w, h, bits/channel, color, compress, filter, interlace
 
     write-chunk $fh, 'IDAT', compress $!data;
 
