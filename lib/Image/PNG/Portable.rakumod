@@ -100,8 +100,7 @@ sub write-chunk (IO::Handle:D $fh, Str:D $type, @data = ()) {
 
 method read(Str:D $file) {
     my $blob = self!slurp-blob($file);
-
-    die "Not a PNG file" unless $blob[0..7] eqv $magic.list;
+    fail "Not a PNG file" unless $blob[0..7] eqv $magic.list;
 
     my %chunks = self!parse-chunks($blob.subbuf(8));
 
