@@ -1,0 +1,38 @@
+use Test;
+use Image::PNG::Portable;
+
+plan 24;
+
+my $file1 = 't/tmp1.png';
+my $file2 = 't/tmp2.png';
+
+my $img1 = Image::PNG::Portable.new(:width(4), :height(4));
+$img1.set($_ % 4, $_ div 4, (10 * $_) % 256, (20 * $_) % 256, (30 * $_) % 256, (40 * $_) % 256) for ^16;
+ok $img1.write($file1), 'write using set()';
+
+my $read1 = Image::PNG::Portable.new;
+ok $read1.read($file1), 'read image written with set()';
+
+for ^4 -> $y {
+    for ^4 -> $x {
+        my $i = $y * 4 + $x;
+        my @expected = ((10 * $i) % 256, (20 * $i) % 256, (30 * $i) % 256, (40 * $i) % 256);
+        is-deeply [$read1.get($x, $y)], @expected, "pixel($x,$y) round-trips correctly";
+    }
+}
+
+my $img2 = Image::PNG::Portable.new(:width(2), :height(2));
+$img2.set-all(100, 150, 200, 250);
+ok $img2.write($file2), 'write using set-all()';
+
+my $read2 = Image::PNG::Portable.new;
+ok $read2.read($file2), 'read image written with set-all()';
+
+for ^2 -> $y {
+    for ^2 -> $x {
+        is-deeply [$read2.get($x, $y)], [100,150,200,250], "uniform pixel ($x,$y) is preserved";
+    }
+}
+
+unlink $file1;
+unlink $file2;

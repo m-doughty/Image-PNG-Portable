@@ -1,3 +1,4 @@
 .precomp/
 /Image-PNG-Portable-*
 *.rakucov
+.DS_Store
