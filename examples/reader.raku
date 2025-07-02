@@ -1,6 +1,8 @@
 #!/usr/bin/env raku
 
-use lib '.';
+my constant $root = $?FILE.IO.cleanup.parent.parent;
+use lib $root.child('lib');
+
 use Image::PNG::Portable;
 
 sub MAIN(Str:D $file-path) {
