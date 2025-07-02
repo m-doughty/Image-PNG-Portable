@@ -39,6 +39,7 @@ method set-all(Int:D $r, Int:D $g, Int:D $b, Int:D $a = 255) {
     my $alpha = $!alpha;
 
     for ^$!height {
+        # every line offset by 1 again for filter byte
         $index++;
         for ^$!width {
             $buffer[$index++] = $r;
