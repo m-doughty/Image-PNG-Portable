@@ -197,19 +197,19 @@ method !apply-filter($filter, @row, $prev, $channels) {
     my @cur = @row;
     given $filter {
         when 0 { }
-        when 1 {
+        when 1 { # SUB
             for ^@row.elems -> $i {
                 @cur[$i] += @cur[$i-$channels] if $i >= $channels;
                 @cur[$i] %= 256;
             }
         }
-        when 2 {
+        when 2 { # UP
             for ^@row.elems -> $i {
                 @cur[$i] += $prev[$i] // 0;
                 @cur[$i] %= 256;
             }
         }
-        when 3 {
+        when 3 { # AVERAGE
             for ^@row.elems -> $i {
                 my $a = $i >= $channels ?? @cur[$i-$channels] !! 0;
                 my $b = $prev[$i] // 0;
@@ -217,7 +217,7 @@ method !apply-filter($filter, @row, $prev, $channels) {
                 @cur[$i] %= 256;
             }
         }
-        when 4 {
+        when 4 { # PAETH
             for ^@row.elems -> $i {
                 my $a = $i >= $channels ?? @cur[$i-$channels] !! 0;
                 my $b = $prev[$i] // 0;
