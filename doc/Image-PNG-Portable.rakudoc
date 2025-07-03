@@ -96,9 +96,10 @@ Clear tExt metadata.
 
 Get the tExt metadata as a Hash.
 
-=head1 AUTHOR
+=head1 AUTHORs
 
-raydiak
+=item raydiak
+=item Matt Doughty
 
 =head1 COPYRIGHT AND LICENSE
 

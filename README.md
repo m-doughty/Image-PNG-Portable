@@ -109,10 +109,11 @@ Clear tExt metadata.
 
 Get the tExt metadata as a Hash.
 
-AUTHOR
-======
+AUTHORs
+=======
 
-raydiak
+  * raydiak
+  * Matt Doughty
 
 COPYRIGHT AND LICENSE
 =====================
