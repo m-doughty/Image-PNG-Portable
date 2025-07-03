@@ -73,9 +73,10 @@ Reads the PNG file to the Image object.
 
 Get the color information at pixel $x, $y (zero-indexed).
 
-=head1 AUTHOR
+=head1 AUTHORs
 
-raydiak
+=item raydiak
+=item Matt Doughty
 
 =head1 COPYRIGHT AND LICENSE
 

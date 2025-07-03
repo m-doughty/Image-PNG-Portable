@@ -22,7 +22,7 @@ $o2.get: 0, 0; # Pixel color value at x,y of 0,0 => (0, 0, 0, 255)
 STATUS
 ------
 
-This module is currently useful for outputting 8-bit-per-channel truecolor images. Writing precompression filters, palettes, grayscale, non-8-bit channels, and ancillary features like gamma correction, color profiles, and textual metadata are all NYI.
+This module is currently useful for outputting 8-bit-per-channel truecolor images. Reading, precompression filters, palettes, grayscale, non-8-bit channels, and ancillary features like gamma correction, color profiles, and textual metadata are all NYI.
 
 DESCRIPTION
 ===========
@@ -75,12 +75,14 @@ Reads the PNG file to the Image object.
 .get($x, $y)
 ------------
 
-Get the color information at pixel $x,$y (zero-indexed).
+Get the color information at pixel $x, $y (zero-indexed).
 
-AUTHOR
-======
+AUTHORs
+=======
 
-raydiak
+  * raydiak
+
+  * Matt Doughty
 
 COPYRIGHT AND LICENSE
 =====================
