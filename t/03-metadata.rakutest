@@ -43,5 +43,5 @@ $read.clear-text-metadata;
 is +$read.text-meta-keys, 0, 'Metadata cleared successfully';
 
 # Cleanup
-$file.IO.unlink;
+unlink $file;
 
