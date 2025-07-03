@@ -13,12 +13,16 @@ use Image::PNG::Portable;
 my $o = Image::PNG::Portable.new: :width(16), :height(16);
 $o.set: 8,8, 255,255,255;
 $o.write: 'image.png';
+
+my $o2 = Image::PNG::Portable.new;
+$o2.read: '/path/to/your.png';
+$o2.get: 0, 0; # Pixel color value at x,y of 0,0 => (0, 0, 0, 255)
 ```
 
 STATUS
 ------
 
-This module is currently useful for outputting 8-bit-per-channel truecolor images. Reading, precompression filters, palettes, grayscale, non-8-bit channels, and ancillary features like gamma correction, color profiles, and textual metadata are all NYI.
+This module is currently useful for outputting 8-bit-per-channel truecolor images. Writing precompression filters, palettes, grayscale, non-8-bit channels, and ancillary features like gamma correction, color profiles, and textual metadata are all NYI.
 
 DESCRIPTION
 ===========
@@ -62,6 +66,16 @@ Gets the color of a pixel in the image as an array of channel values.
 -------------
 
 Writes the contents of the image to the specified file.
+
+.read($file)
+------------
+
+Reads the PNG file to the Image object.
+
+.get($x, $y)
+------------
+
+Get the color information at pixel $x,$y (zero-indexed).
 
 AUTHOR
 ======

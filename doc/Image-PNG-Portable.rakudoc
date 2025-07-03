@@ -13,6 +13,10 @@ my $o = Image::PNG::Portable.new: :width(16), :height(16);
 $o.set: 8,8, 255,255,255;
 $o.write: 'image.png';
 
+my $o2 = Image::PNG::Portable.new;
+$o2.read: '/path/to/your.png';
+$o2.get: 0, 0; # Pixel color value at x,y of 0,0 => (0, 0, 0, 255)
+
 =end code
 
 =head2 STATUS
@@ -60,6 +64,14 @@ Gets the color of a pixel in the image as an array of channel values.
 =head2 .write($file)
 
 Writes the contents of the image to the specified file.
+
+=head2 .read($file)
+
+Reads the PNG file to the Image object.
+
+=head2 .get($x, $y)
+
+Get the color information at pixel $x, $y (zero-indexed).
 
 =head1 AUTHOR
 
