@@ -79,11 +79,9 @@ method write(Str:D $file) {
 
     write-chunk $fh, 'IDAT', compress $!data;
 
-    if %!text-metadata.defined {
-        for %!text-metadata.kv -> $key, $value {
-            my @data = flat $key.encode('latin-1').list, 0, $value.encode('latin-1').list;
-            write-chunk $fh, 'tEXt', @data;
-        }
+    for %!text-metadata.kv -> $key, $value {
+        my @data = flat $key.encode('latin-1').list, 0, $value.encode('latin-1').list;
+        write-chunk $fh, 'tEXt', @data;
     }
 
     write-chunk $fh, 'IEND';
@@ -101,7 +99,7 @@ multi method set-text-meta(Str:D $key, Str:D $value) {
 
 multi method set-text-meta(%pairs) {
     for %pairs.kv -> $k, $v {
-        self.set-text-meta($k, $v.Str) with $v.defined;
+        self.set-text-meta($k, $v.Str) with $v;
     }
 }
 
