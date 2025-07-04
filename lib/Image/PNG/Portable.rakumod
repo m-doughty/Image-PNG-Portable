@@ -11,7 +11,7 @@ has Int $!channels;
 has Int $!line-bytes;
 has Int $!data-bytes;
 has Buf $!data;
-has Str %.text-metadata = {};
+has Str %.text-metadata;
 
 # magic string for PNGs
 my $magic = Blob.new: 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A;
@@ -94,10 +94,8 @@ method write(Str:D $file) {
 }
 
 multi method set-text-meta(Str:D $key, Str:D $value) {
-    fail "Invalid tEXt keyword (must be 1–79 Latin-1 chars)" 
-        unless $key.encode('latin-1').bytes ~~ 1..79;
-    fail "tEXt keyword may not contain null bytes"
-        if $key.contains("\0");
+    fail "Invalid tEXt keyword (must be 1–79 Latin-1 chars)"
+        if !$key || $key.contains(/<:!Script<Latin>>/) || $key.chars > 79;
     %!text-metadata{$key} = $value;
 }
 
