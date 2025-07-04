@@ -2,7 +2,6 @@ Revision history for Image::PNG::Portable
 
 {{$NEXT}}
 
-0.3  2025-07-03T20:45:00+00:00
     - Add metadata support
 
 0.2  2025-07-03T22:07:20+02:00
