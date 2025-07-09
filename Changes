@@ -2,6 +2,9 @@ Revision history for Image::PNG::Portable
 
 {{$NEXT}}
 
+0.3.1  2025-07-09T10:52:50+01:00
+    - Improve file reading performance (MasterDuke17)
+
 0.3  2025-07-09T10:45:51+01:00
     - Add metadata support
 
