@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/raku-community-modules/Image-PNG-Portable/actions/workflows/linux.yml/badge.svg)](https://github.com/raku-community-modules/Image-PNG-Portable/actions) [![Actions Status](https://github.com/raku-community-modules/Image-PNG-Portable/actions/workflows/macos.yml/badge.svg)](https://github.com/raku-community-modules/Image-PNG-Portable/actions) [![Actions Status](https://github.com/raku-community-modules/Image-PNG-Portable/actions/workflows/windows.yml/badge.svg)](https://github.com/raku-community-modules/Image-PNG-Portable/actions)
+[![Actions Status](https://github.com/m-doughty/Image-PNG-Portable/actions/workflows/linux.yml/badge.svg)](https://github.com/m-doughty/Image-PNG-Portable/actions) [![Actions Status](https://github.com/m-doughty/Image-PNG-Portable/actions/workflows/macos.yml/badge.svg)](https://github.com/m-doughty/Image-PNG-Portable/actions) [![Actions Status](https://github.com/m-doughty/Image-PNG-Portable/actions/workflows/windows.yml/badge.svg)](https://github.com/m-doughty/Image-PNG-Portable/actions)
 
 NAME
 ====
@@ -69,15 +69,15 @@ Gets the color of a pixel in the image as an array of channel values.
 
 Writes the contents of the image to the specified file.
 
-.read($file)
-------------
+.read($file, $metadata-only = False)
+------------------------------------
 
-Reads the PNG file to the Image object.
+Reads the PNG file to the Image object. If $metadata-only is set to True, will not read pixel data.
 
 .get($x, $y)
 ------------
 
-Get the color information at pixel $x,$y (zero-indexed).
+Get the color information at pixel $x, $y (zero-indexed).
 
 .set-text-meta($key, $value)
 ----------------------------
@@ -113,6 +113,7 @@ AUTHORs
 =======
 
   * raydiak
+
   * Matt Doughty
 
 COPYRIGHT AND LICENSE

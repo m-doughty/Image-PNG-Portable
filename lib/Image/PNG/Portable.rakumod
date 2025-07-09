@@ -117,7 +117,7 @@ sub write-chunk (IO::Handle:D $fh, Str:D $type, @data = ()) {
     True
 }
 
-method read(Str:D $file) {
+method read(Str:D $file, Bool $metadata-only = False) {
     my $blob = self!slurp-blob($file);
     fail "Not a PNG file" unless $blob[0..7] eqv $magic.list;
 
@@ -128,8 +128,10 @@ method read(Str:D $file) {
 
     self!init-from-ihdr(%ihdr);
 
-    my $idat = self!collect-idat(%chunks<IDAT>);
-    self!decode-scanlines($idat);
+    if (!$metadata-only) {
+        my $idat = self!collect-idat(%chunks<IDAT>);
+        self!decode-scanlines($idat);
+    }
 
     if %chunks<tEXt>:exists {
         for %chunks<tEXt>.List -> $chunk {

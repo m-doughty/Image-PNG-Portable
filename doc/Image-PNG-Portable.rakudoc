@@ -64,9 +64,9 @@ Gets the color of a pixel in the image as an array of channel values.
 
 Writes the contents of the image to the specified file.
 
-=head2 .read($file)
+=head2 .read($file, $metadata-only = False)
 
-Reads the PNG file to the Image object.
+Reads the PNG file to the Image object. If $metadata-only is set to True, will not read pixel data.
 
 =head2 .get($x, $y)
 

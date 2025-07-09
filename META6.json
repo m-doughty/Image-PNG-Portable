@@ -1,5 +1,5 @@
 {
-  "auth": "zef:raku-community-modules",
+  "auth": "zef:apogee",
   "author": "raydiak",
   "build-depends": [
   ],
@@ -16,12 +16,13 @@
   "raku": "6.*",
   "resources": [
   ],
-  "source-url": "https://github.com/raku-community-modules/Image-PNG-Portable.git",
+  "source-url": "https://github.com/m-doughty/Image-PNG-Portable.git",
   "tags": [
     "IMAGE",
     "PNG"
   ],
   "test-depends": [
+    "Test::Coverage"
   ],
   "version": "0.3"
 }
