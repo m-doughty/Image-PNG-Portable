@@ -92,8 +92,8 @@ method write(Str:D $file) {
 }
 
 multi method set-text-meta(Str:D $key, Str:D $value) {
-    fail "Invalid tEXt keyword (must be 1–79 Latin-1 chars)"
-        if !$key || $key.contains(/<:!Script<Latin>>/) || $key.chars > 79;
+    fail "Invalid tEXt keyword $key (must be 1–79 Latin-1 chars)"
+        if !$key || $key.chars > 79;
     %!text-metadata{$key} = $value;
 }
 

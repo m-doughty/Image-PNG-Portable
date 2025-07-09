@@ -2,6 +2,9 @@ Revision history for Image::PNG::Portable
 
 {{$NEXT}}
 
+0.3.2  2025-07-09T15:02:34+01:00
+    - Fixed a bug where numeric keys in tExt failed to parse
+
 0.3.1  2025-07-09T10:52:50+01:00
     - Improve file reading performance (MasterDuke17)
 
