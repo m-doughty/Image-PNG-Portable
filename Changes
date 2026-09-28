@@ -2,6 +2,14 @@ Revision history for Image::PNG::Portable
 
 {{$NEXT}}
 
+0.3.2  2026-09-28T18:13:20+01:00
+    - Test::Coverage is no longer a test dependency. Only the author test
+      xt/coverage.rakutest uses it, and zef does not run xt/ on install, so
+      every install of a dependent pulled in the coverage toolchain for
+      nothing. That toolchain (MoarVM::Bytecode) fails its tests on
+      Rakudo 2026.09, which blocked installing anything that depends on
+      this module.
+
 0.3.2  2025-07-09T15:02:34+01:00
     - Fixed a bug where numeric keys in tExt failed to parse
 

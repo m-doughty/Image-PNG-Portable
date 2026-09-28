@@ -22,7 +22,6 @@
     "PNG"
   ],
   "test-depends": [
-    "Test::Coverage"
   ],
   "version": "0.3.2"
 }
