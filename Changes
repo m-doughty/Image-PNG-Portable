@@ -2,6 +2,9 @@ Revision history for Image::PNG::Portable
 
 {{$NEXT}}
 
+0.3.3  2026-09-29T11:41:13+01:00
+    - Correctly bump version
+
 0.3.2  2026-09-28T18:13:20+01:00
     - Test::Coverage is no longer a test dependency. Only the author test
       xt/coverage.rakutest uses it, and zef does not run xt/ on install, so
